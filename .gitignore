@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore Visual Studio local configurations
+.vs/
+
+# Ignore build outputs
+[Bb]in/
+[Oo]bj/

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Ademy/Ademy.csproj" />
+  <Project Path="DataAccess/DataAccess.csproj" Id="8311c564-f39d-4291-804e-599a58ee7b9d" />
+</Solution>
