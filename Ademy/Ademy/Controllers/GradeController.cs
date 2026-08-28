@@ -27,6 +27,11 @@ namespace Ademy.Controllers
         {
             return this._service.GetActive().Result;
         }
+        /// <summary>
+        /// Create Grade
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         [HttpPost]
         public bool Create(Grade data)
         {
