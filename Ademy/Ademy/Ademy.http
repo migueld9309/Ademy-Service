@@ -1,0 +1,6 @@
+@Ademy_HostAddress = http://localhost:5231
+
+GET {{Ademy_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
