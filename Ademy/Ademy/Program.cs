@@ -1,4 +1,5 @@
 using DataAccess.DataAccess;
+using DataAccess.Services;
 using DataAccess.Services.Grade;
 using DataAccess.Services.Shift;
 using DataAccess.Services.User;
@@ -31,6 +32,7 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IUserTypeService, UserTypeService>();
 builder.Services.AddTransient<IShiftService, ShiftService>();
 builder.Services.AddTransient<IGradeService, GradeService>();
+builder.Services.AddTransient<IEncrypt, Encrypt>();
 
 var app = builder.Build();
 

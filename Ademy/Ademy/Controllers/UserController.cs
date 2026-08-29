@@ -34,9 +34,9 @@ namespace Ademy.Controllers
         }
 
         [HttpPost]
-        public bool Create()
+        public User Create(User data)
         {
-            return true;
+            return this._service.Create(data).Data;
         }
 
         [HttpPut]
