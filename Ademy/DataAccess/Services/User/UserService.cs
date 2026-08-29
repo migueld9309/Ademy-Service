@@ -7,13 +7,16 @@ namespace DataAccess.Services.User
     {
         Task<List<Models.User>> Get();
         public bool Login(string user, string pasword);
+        public GenericResponse<Models.User> Create(Models.User data);
     }
 
     public class UserService : IUserService
     {
         private readonly Context _context;
-        public UserService(Context Context) { 
+        private readonly IEncrypt _encrypt;
+        public UserService(Context Context, IEncrypt encrypt) { 
             this._context = Context;
+            this._encrypt = encrypt;
         }
 
         public Task<List<Models.User>> Get()
@@ -38,6 +41,9 @@ namespace DataAccess.Services.User
         {
             try
             {
+
+                var encryptPassword = this._encrypt.Encriptar(data.Password, "abcdefghijklmnopqrstuvwxyzabcdef");
+                data.Password = encryptPassword;
                 this._context.Users.Add(data);
                 this._context.SaveChanges();
                 return GenericResponse<Models.User>.Success(data);
