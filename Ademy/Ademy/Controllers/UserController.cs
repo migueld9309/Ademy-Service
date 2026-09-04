@@ -1,6 +1,7 @@
 ﻿using DataAccess.Services.User;
 using Microsoft.AspNetCore.Mvc;
 using DataAccess.Models;
+using DataAccess.Models.DTO;
 
 namespace Ademy.Controllers
 {
@@ -27,10 +28,10 @@ namespace Ademy.Controllers
             return true;
         }
 
-        [HttpGet]
-        public bool Login()
+        [HttpPost]
+        public bool Login([FromBody] Login login)
         {
-            return this._service.Login("","");
+            return this._service.Login(login.Email, login.Password);
         }
 
         [HttpPost]

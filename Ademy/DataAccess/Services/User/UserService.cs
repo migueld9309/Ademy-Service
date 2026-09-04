@@ -1,12 +1,13 @@
 ﻿using DataAccess.DataAccess;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DataAccess.Services.User
 {
     public interface IUserService
     {
         Task<List<Models.User>> Get();
-        public bool Login(string user, string pasword);
+        public bool Login(string email, string password);
         public GenericResponse<Models.User> Create(Models.User data);
     }
 
@@ -51,12 +52,14 @@ namespace DataAccess.Services.User
             catch (Exception ex) {  return GenericResponse<Models.User>.Fail(ex.Message); }
         }
 
-        public bool Login(string user, string pasword)
+        public bool Login(string email, string password)
         {
             try
             {
+                var encryptPassword = this._encrypt.Encriptar(password, "abcdefghijklmnopqrstuvwxyzabcdef");
+                var userExists = this._context.Users.FirstOrDefault(x => x.Email == email && x.Password == encryptPassword);
                 //TODO: Validation Active Directory
-                return true;
+                return userExists != null;
             }
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
